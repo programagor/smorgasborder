@@ -1,0 +1,38 @@
+# Project TODO (Hierarchical)
+
+- Vision & Objectives
+  - Define the app as a shared worksheet for aligning preferences, boundaries, and expectations with optional "spiciness" gating.
+  - Document the expectation that initial release focuses on collaboration flows over granular permissions.
+  - Track requirement that "common ground" only appears when at least one answer is visible to current viewer.
+- Architecture & Framework Setup
+  - Choose backend stack (e.g., Node/TypeScript, PostgreSQL, websockets or SSE) with real-time data sync in mind.
+    - Evaluate libraries for state reconciliation and optimistic updates; favor timestamp-based merge strategy for low contention.
+  - Model core entities: worksheet, user (per-worksheet participant), view (per-user perspective + overrides), section, question, answer, template.
+    - Define linkage between view IDs and worksheet/user pairing with override metadata (expanded sections, visibility overrides).
+  - Establish message/REST contracts for pulling worksheet state and pushing updates (answers, names, overrides, template changes).
+- Frontend Experience
+  - Build worksheet table UI with sections/questions as rows and participants as columns; ensure scalability for many columns (horizontal scrolling/virtualization later).
+    - Implement toolbar actions: add section, add question, add user; include template selector and view link copy per column.
+    - Add per-cell answer visibility toggles and a toolbar "show all answers" override.
+    - Keep sections collapsed by default and persist expansion state per view.
+  - Introduce template loading workflow and the save/discard/cancel confirmation when switching away from an edited worksheet.
+  - Support answer types (red/yellow/green, multi-select checkboxes from predefined list, optional free-text comments) and a spicy flag per question.
+- Real-Time Collaboration
+  - Implement periodic polling or websocket channel (target <10s latency) to reflect remote updates quickly.
+    - Handle concurrent edits with server timestamps and last-writer-wins or CRDT-lite approach for low-conflict fields (names, answers, overrides).
+    - Ensure the "common ground" column updates reactively when any visible answer changes.
+- Templates & Content
+  - Seed database with starter templates (including "blank") referenced by toolbar dropdown; keep templates read-only for now.
+  - Allow custom questions/sections to be appended to the active worksheet while maintaining template provenance for audit.
+- Deployment & Operations
+  - Create docker-compose stack with app server, database, and nginx reverse proxy handling HTTPS offload.
+    - Configure nginx for websocket upgrades and static asset caching.
+    - Provide environment templates for secrets/DB credentials.
+  - Set up GitHub Actions CI for linting, tests, and building container images; add deploy job targeting registry + compose pull/restart.
+- Testing & Quality
+  - Define end-to-end scenarios covering view creation, template switching with unsaved changes dialog, answer visibility overrides, and common-ground calculation.
+  - Add API/unit tests for data model (view lookup by ID, override persistence) and real-time update handlers.
+  - Plan UX tests for multi-user flows and performance under many columns.
+- Documentation
+  - Expand README with user flow, architecture overview, and deployment/testing guidance.
+  - Keep AGENTS.md instructions aligned with process changes; update TODO hierarchy as tasks evolve.
