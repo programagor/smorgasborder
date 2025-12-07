@@ -104,6 +104,8 @@ function handleItemClick(element, key) {
 
 // Clear all selections
 function clearAll() {
+    // Note: Using native confirm() for simplicity. For better accessibility,
+    // consider implementing a custom modal with proper ARIA attributes.
     if (confirm('Are you sure you want to clear all selections?')) {
         state.selections = {};
         saveState();
