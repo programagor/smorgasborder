@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relationship Anarchy Smorgasbord</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Relationship Anarchy Smorgasbord</h1>
+            <p class="tagline">Design your relationships your way</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <h2>About This Tool</h2>
+            <p>
+                The Relationship Anarchy Smorgasbord is a tool for exploring and communicating about 
+                the different elements that can be part of a relationship. It's based on the idea that 
+                relationships can be customized to fit the needs and desires of the people involved, 
+                rather than following preset templates.
+            </p>
+            <p>
+                Select the elements that interest you, and use different colors to indicate your level 
+                of interest or comfort. You can share your results with partners to facilitate conversations 
+                about what you each want from your relationship.
+            </p>
+        </section>
+
+        <section class="legend">
+            <h3>Selection Guide</h3>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <span class="color-box" style="background-color: #4CAF50;"></span>
+                    <span>Want / Interested</span>
+                </div>
+                <div class="legend-item">
+                    <span class="color-box" style="background-color: #FFC107;"></span>
+                    <span>Maybe / Open to Discussion</span>
+                </div>
+                <div class="legend-item">
+                    <span class="color-box" style="background-color: #f44336;"></span>
+                    <span>Not Interested / No</span>
+                </div>
+                <div class="legend-item">
+                    <span class="color-box" style="background-color: #9E9E9E;"></span>
+                    <span>Unselected</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="controls">
+            <button id="clearAll" class="btn">Clear All</button>
+            <button id="exportResults" class="btn btn-primary">Export Results</button>
+        </div>
+
+        <div id="categories" class="categories"></div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                Based on the original Relationship Anarchy Smorgasbord concept. 
+                This tool is for personal exploration and communication.
+            </p>
+            <p>
+                <a href="https://github.com/programagor/smorgasborder" target="_blank">View on GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
